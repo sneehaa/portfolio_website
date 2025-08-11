@@ -1,9 +1,10 @@
+
 name: "Deploy to Server"
 
 on:
   push:
-      branches:
-        - main
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -41,5 +42,5 @@ jobs:
       - name: "Docker Pull and Restart Docker"
         run: |
           ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker pull snehaa123/mywebsite'
-          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker stop mysite && docker rm mywebsite'
+          sh -t ubuntu@$SERVER_IP -i pem.pem 'docker stop mysite && docker rm mywebsite'
           ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker run --name mywebsite -p 80:80 -d snehaa123/mywebsite'
