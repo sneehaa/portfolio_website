@@ -1,19 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sneha Adhikari | Flutter Developer & UI/UX Designer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #89CFF0; 
+      --dark: #2C3E50;
+      --light: #F8F9FA;
+      --accent: #FF7E5F;
+      --text: #333333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover {
+      color: var(--primary);
+    }
+    
+    /* Sections */
+    section {
+      padding: 100px 0;
+    }
+    
+    section:nth-child(even) {
+      background-color: white;
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: var(--dark);
+      position: relative;
+      display: inline-block;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background-color: var(--primary);
+    }
+    
+    /* About Section */
+    #about p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      max-width: 800px;
+    }
+    
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .skill-tag {
+      background-color: var(--primary);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    .certification {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: rgba(137, 207, 240, 0.1);
+      border-left: 4px solid var(--primary);
+      border-radius: 0 5px 5px 0;
+    }
+    
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .project-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .project-img {
+      height: 200px;
+      background-color: #eee;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .project-content {
+      padding: 25px;
+    }
+    
+    .project-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    
+    .project-content p {
+      margin-bottom: 20px;
+      color: #666;
+    }
+    
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .tech-tag {
+      background-color: #f0f0f0;
+      color: #555;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .project-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .project-links a:hover {
+      color: var(--accent);
+    }
+    
+    /* Experience Section */
+    .experience-item {
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .experience-item:last-child {
+      border-bottom: none;
+    }
+    
+    .experience-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+    }
+    
+    .experience-date {
+      color: #777;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+    
+    /* Contact Section */
+    #contact p {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+    
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+    
+    .contact-links a:hover {
+      color: var(--primary);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+    }
+    
+    @media (max-width: 768px) {
+      header .container {
+        flex-direction: column;
+      }
+      
+      nav {
+        margin-top: 15px;
+      }
+      
+      nav a {
+        margin: 0 10px;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-
   <header>
     <div class="container">
-      <h1>My Portfolio</h1>
+      <div class="logo">Sneha Adhikari</div>
       <nav>
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -22,36 +296,148 @@
   <section id="about">
     <div class="container">
       <h2>About Me</h2>
-      <p>Hello! I'm Sneha Adhikari, a web developer passionate about building websites and web applications.</p>
+      <p>Hello! I'm Sneha Adhikari, a passionate Flutter developer and UI/UX designer currently pursuing my education. I specialize in creating beautiful, functional mobile applications with intuitive user interfaces.</p>
+      <p>With a strong foundation in both frontend development and design principles, I bridge the gap between aesthetics and functionality to deliver seamless user experiences.</p>
+      
+      <div class="skills">
+        <span class="skill-tag">Flutter</span>
+        <span class="skill-tag">Dart</span>
+        <span class="skill-tag">UI/UX Design</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">AWS</span>
+      </div>
+      
+      <div class="certification">
+        <p><strong>AWS Academy Graduate</strong> - AWS Academy Cloud Foundations certificate</p>
+      </div>
     </div>
   </section>
 
   <section id="projects">
     <div class="container">
-      <h2>Projects</h2>
-      <div class="project">
-        <h3>Project 1</h3>
-        <p>Description of your project.</p>
+      <h2>My Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-img" style="background-color: #E3F2FD;"></div>
+          <div class="project-content">
+            <h3>Bookaway Web</h3>
+            <p>A complete travel accommodation booking platform with user authentication, search functionality, and admin panel.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Redux</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">JWT</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/sneehaa/bookawayWeb.git" target="_blank">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img" style="background-color: #FFEBEE;"></div>
+          <div class="project-content">
+            <h3>Eventify</h3>
+            <p>An event management application for creating, booking, and ticketing events with complete frontend and backend.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/sneehaa/eventify.git" target="_blank">
+                <i class="fab fa-github"></i> Frontend
+              </a>
+              <a href="https://github.com/sneehaa/eventifyBackend.git" target="_blank">
+                <i class="fab fa-github"></i> Backend
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img" style="background-color: #E8F5E9;"></div>
+          <div class="project-content">
+            <h3>Bookshop App</h3>
+            <p>A simple bookshop application built with Flutter for browsing and purchasing books.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Firebase</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/sneehaa/bookshop.git" target="_blank">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-img" style="background-color: #FFF3E0;"></div>
+          <div class="project-content">
+            <h3>UI/UX Designs</h3>
+            <p>Collection of my Figma designs including Eventify app and Road Safety concepts.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Figma</span>
+              <span class="tech-tag">UI Design</span>
+              <span class="tech-tag">UX Research</span>
+            </div>
+            <div class="project-links">
+              <a href="https://www.figma.com/design/ZZnDLR5rHqx8ym0Gt05sV6/Eventify?node-id=0-1&t=CB5fKZVFkuM9bPGD-1" target="_blank">
+                <i class="fab fa-figma"></i> Eventify
+              </a>
+              <a href="https://www.figma.com/design/SJL5HrxCk3fawKkCaiW9tr/road_saftey?node-id=0-1&t=LobMfx731L8z0zGc-1" target="_blank">
+                <i class="fab fa-figma"></i> Road Safety
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="project">
-        <h3>Project 2</h3>
-        <p>Description of another project.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <h2>Work Experience</h2>
+      <div class="experience-item">
+        <h3>Flutter Developer Intern</h3>
+        <div class="experience-date">IT Hive Solutions</div>
+        <p>Developed and maintained Flutter applications, collaborated with the design team to implement UI/UX improvements, and participated in code reviews.</p>
       </div>
     </div>
   </section>
 
   <section id="contact">
     <div class="container">
-      <h2>Contact</h2>
-      <p>Email: you@example.com</p>
+      <h2>Get In Touch</h2>
+      <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
+      
+      <div class="contact-links">
+        <a href="mailto:adhikarisneha00012@gmail.com">
+          <i class="fas fa-envelope"></i> adhikarisneha000@gmail.com
+        </a>
+        <a href="www.linkedin.com/in/sneha-adhikari-3878b7230" target="_blank">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://github.com/sneehaa" target="_blank">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Your Name</p>
+      <p>&copy; 2023 Sneha Adhikari. All rights reserved.</p>
     </div>
   </footer>
-
 </body>
 </html>
