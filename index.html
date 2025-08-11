@@ -7,18 +7,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #89CFF0; 
-      --dark: #2C3E50;
-      --light: #F8F9FA;
-      --accent: #FF7E5F;
-      --text: #333333;
+      --primary: #6C63FF; /* Elegant purple */
+      --secondary: #4D8AF0; /* Complementary blue */
+      --dark: #2F2E41;
+      --light: #F9F9FF;
+      --accent: #FF6584;
+      --text: #4A4A4A;
+      --heading: #2F2E41;
+      --card-bg: #FFFFFF;
     }
     
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     
     body {
@@ -36,8 +39,8 @@
     
     /* Header */
     header {
-      background-color: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
       position: fixed;
       width: 100%;
       top: 0;
@@ -54,19 +57,38 @@
     .logo {
       font-size: 1.8rem;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--heading);
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     
     nav a {
-      color: var(--dark);
+      color: var(--heading);
       text-decoration: none;
       margin-left: 30px;
-      font-weight: 500;
-      transition: color 0.3s;
+      font-weight: 600;
+      transition: all 0.3s;
+      position: relative;
+      padding-bottom: 5px;
+      font-size: 1rem;
     }
     
-    nav a:hover {
-      color: var(--primary);
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
     }
     
     /* Sections */
@@ -75,15 +97,16 @@
     }
     
     section:nth-child(even) {
-      background-color: white;
+      background-color: var(--card-bg);
     }
     
     h2 {
       font-size: 2.5rem;
       margin-bottom: 40px;
-      color: var(--dark);
+      color: var(--heading);
       position: relative;
       display: inline-block;
+      font-weight: 700;
     }
     
     h2::after {
@@ -93,7 +116,8 @@
       left: 0;
       width: 70px;
       height: 4px;
-      background-color: var(--primary);
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
     }
     
     /* About Section */
@@ -101,6 +125,7 @@
       font-size: 1.1rem;
       margin-bottom: 20px;
       max-width: 800px;
+      color: var(--text);
     }
     
     .skills {
@@ -122,7 +147,7 @@
     .certification {
       margin-top: 30px;
       padding: 20px;
-      background-color: rgba(137, 207, 240, 0.1);
+      background-color: rgba(108, 99, 255, 0.08);
       border-left: 4px solid var(--primary);
       border-radius: 0 5px 5px 0;
     }
@@ -136,23 +161,37 @@
     }
     
     .project-card {
-      background-color: white;
-      border-radius: 8px;
+      background-color: var(--card-bg);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
       transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(0,0,0,0.05);
     }
     
     .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
     }
     
     .project-img {
       height: 200px;
-      background-color: #eee;
-      background-size: cover;
-      background-position: center;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e6e9f2 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-img::before {
+      content: attr(data-project-name);
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--heading);
+      opacity: 0.1;
+      line-height: 1;
+      z-index: 1;
     }
     
     .project-content {
@@ -162,12 +201,13 @@
     .project-content h3 {
       font-size: 1.5rem;
       margin-bottom: 10px;
-      color: var(--dark);
+      color: var(--heading);
+      font-weight: 700;
     }
     
     .project-content p {
       margin-bottom: 20px;
-      color: #666;
+      color: var(--text);
     }
     
     .tech-stack {
@@ -178,11 +218,12 @@
     }
     
     .tech-tag {
-      background-color: #f0f0f0;
-      color: #555;
+      background-color: rgba(108, 99, 255, 0.1);
+      color: var(--primary);
       padding: 5px 12px;
       border-radius: 15px;
       font-size: 0.8rem;
+      font-weight: 500;
     }
     
     .project-links {
@@ -193,22 +234,25 @@
     .project-links a {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
       color: var(--primary);
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
+      transition: all 0.3s;
+      padding: 8px 15px;
+      border-radius: 6px;
+      background-color: rgba(108, 99, 255, 0.1);
     }
     
     .project-links a:hover {
-      color: var(--accent);
+      background-color: rgba(108, 99, 255, 0.2);
     }
     
     /* Experience Section */
     .experience-item {
       margin-bottom: 30px;
       padding-bottom: 30px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
     
     .experience-item:last-child {
@@ -218,10 +262,13 @@
     .experience-item h3 {
       font-size: 1.3rem;
       margin-bottom: 5px;
+      color: var(--heading);
+      font-weight: 700;
     }
     
     .experience-date {
-      color: #777;
+      color: var(--text);
+      opacity: 0.8;
       margin-bottom: 15px;
       font-size: 0.9rem;
     }
@@ -230,12 +277,13 @@
     #contact p {
       margin-bottom: 30px;
       font-size: 1.1rem;
+      color: var(--text);
     }
     
     .contact-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 15px;
       margin-top: 30px;
     }
     
@@ -243,14 +291,19 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: var(--dark);
+      color: var(--heading);
       text-decoration: none;
       font-size: 1.1rem;
-      transition: color 0.3s;
+      transition: all 0.3s;
+      font-weight: 500;
+      padding: 12px 20px;
+      border-radius: 8px;
+      background-color: rgba(108, 99, 255, 0.08);
     }
     
     .contact-links a:hover {
-      color: var(--primary);
+      background-color: rgba(108, 99, 255, 0.15);
+      transform: translateY(-2px);
     }
     
     /* Footer */
@@ -276,6 +329,15 @@
       
       .projects-grid {
         grid-template-columns: 1fr;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      .contact-links a {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
@@ -321,27 +383,26 @@
       <h2>My Projects</h2>
       <div class="projects-grid">
         <div class="project-card">
-          <div class="project-img" style="background-color: #E3F2FD;"></div>
+          <div class="project-img" data-project-name="Bookaway"></div>
           <div class="project-content">
             <h3>Bookaway Web</h3>
             <p>A complete travel accommodation booking platform with user authentication, search functionality, and admin panel.</p>
             <div class="tech-stack">
               <span class="tech-tag">React</span>
-              <span class="tech-tag">Redux</span>
               <span class="tech-tag">Node.js</span>
               <span class="tech-tag">MongoDB</span>
               <span class="tech-tag">JWT</span>
             </div>
             <div class="project-links">
               <a href="https://github.com/sneehaa/bookawayWeb.git" target="_blank">
-                <i class="fab fa-github"></i> Code
+                <i class="fab fa-github"></i> View Code
               </a>
             </div>
           </div>
         </div>
         
         <div class="project-card">
-          <div class="project-img" style="background-color: #FFEBEE;"></div>
+          <div class="project-img" data-project-name="Eventify"></div>
           <div class="project-content">
             <h3>Eventify</h3>
             <p>An event management application for creating, booking, and ticketing events with complete frontend and backend.</p>
@@ -363,7 +424,7 @@
         </div>
         
         <div class="project-card">
-          <div class="project-img" style="background-color: #E8F5E9;"></div>
+          <div class="project-img" data-project-name="Bookshop"></div>
           <div class="project-content">
             <h3>Bookshop App</h3>
             <p>A simple bookshop application built with Flutter for browsing and purchasing books.</p>
@@ -374,14 +435,14 @@
             </div>
             <div class="project-links">
               <a href="https://github.com/sneehaa/bookshop.git" target="_blank">
-                <i class="fab fa-github"></i> Code
+                <i class="fab fa-github"></i> View Code
               </a>
             </div>
           </div>
         </div>
         
         <div class="project-card">
-          <div class="project-img" style="background-color: #FFF3E0;"></div>
+          <div class="project-img" data-project-name="UI Designs"></div>
           <div class="project-content">
             <h3>UI/UX Designs</h3>
             <p>Collection of my Figma designs including Eventify app and Road Safety concepts.</p>
@@ -421,10 +482,10 @@
       <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
       
       <div class="contact-links">
-        <a href="mailto:adhikarisneha00012@gmail.com">
-          <i class="fas fa-envelope"></i> adhikarisneha000@gmail.com
+        <a href="mailto:adhikarisneha0001@gmail.com">
+          <i class="fas fa-envelope"></i> Email Me
         </a>
-        <a href="www.linkedin.com/in/sneha-adhikari-3878b7230" target="_blank">
+        <a href="https://www.linkedin.com/in/sneha-adhikari-3878b7230" target="_blank">
           <i class="fab fa-linkedin"></i> LinkedIn
         </a>
         <a href="https://github.com/sneehaa" target="_blank">
@@ -436,7 +497,7 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2023 Sneha Adhikari. All rights reserved.</p>
+      <p>&copy; 2025 Sneha Adhikari. All rights reserved.</p>
     </div>
   </footer>
 </body>
