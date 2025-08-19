@@ -28,8 +28,8 @@ jobs:
       - name: "Build Docker Image"
         run: |
           docker login -u snehaa123 -p $DOCKERHUB_PAT
-          docker build -t snehaa123/mywebsite .
-          docker push snehaa123/mywebsite
+          docker build -t snehaa123/portfolio_website .
+          docker push snehaa123/portfolio_website
         env:
           DOCKERHUB_PAT: ${{ secrets.DOCKERHUB_PAT }}
 
@@ -51,6 +51,6 @@ jobs:
 
       - name: "Docker Pull and Restart Docker"
         run: |
-          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker pull snehaa123/mywebsite'
-          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker stop mywebsite && docker rm mywebsite'
-          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker run --name mywebsite -p 80:80 -d snehaa123/mywebsite'
+          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker pull snehaa123/portfolio_website'
+          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker stop portfolio_website && docker rm portfolio_website'
+          ssh -t ubuntu@$SERVER_IP -i pem.pem 'docker run --name portfolio_website -p 80:80 -d snehaa123/portfolio_website'
