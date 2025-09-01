@@ -98,7 +98,6 @@ Resources:
         - !Ref SecurityGroup
         # - !GetAtt "SecurityGroup.GroupId"
  
-      # Configure storage
       BlockDeviceMappings:
         - DeviceName: /dev/sda1
         # BlockDeviceMapping-DeviceName needs to be match with AMI specifications.
